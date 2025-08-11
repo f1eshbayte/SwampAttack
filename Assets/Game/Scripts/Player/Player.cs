@@ -29,6 +29,11 @@ public class Player : MonoBehaviour
             _currentWeapon.Shoot(_shootPoint);
         }
     }
+
+    public void AddMoney(int money)
+    {
+        Money += money;
+    }
     
     public void TakeDamage(int damage)
     {
@@ -38,10 +43,4 @@ public class Player : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    private void OnEnemyDied(int reward)
-    {
-        Money += reward;
-    }
-
-    
 }
