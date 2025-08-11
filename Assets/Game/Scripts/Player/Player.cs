@@ -11,8 +11,9 @@ public class Player : MonoBehaviour
 
     private Weapon _currentWeapon;
     private Animator _animator;
-
     private int _currentHealth;
+
+    public int Money { get; private set; }
     
     private void Start()
     {
@@ -28,4 +29,19 @@ public class Player : MonoBehaviour
             _currentWeapon.Shoot(_shootPoint);
         }
     }
+    
+    public void TakeDamage(int damage)
+    {
+        _currentHealth -= damage;
+        if (_currentHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+    private void OnEnemyDied(int reward)
+    {
+        Money += reward;
+    }
+
+    
 }
