@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
@@ -20,6 +17,9 @@ public class AttackState : State
 
     private void Update()
     {
+        if (Target == null) 
+            return;
+        
         if (_lastAttackTime <= 0)
         {
             Attack(Target);

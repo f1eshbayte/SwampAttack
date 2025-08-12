@@ -8,13 +8,15 @@ public class Spawner : MonoBehaviour
     [SerializeField] private List<Wave> _waves;
     [SerializeField] private Transform _spawnPoint;
     [SerializeField] private Player _player;
-
+    
     private Wave _currentWave;
     private int _currentWaveNumber = 0;
     private float _timeAfterLastSpawn;
     private int _spawned;
 
+    private int _layer = 1;
     public event UnityAction AllEnemySpawned;
+    public event UnityAction<int, int> EnemyCountChanged;
 
     private void Start()
     {
@@ -33,6 +35,7 @@ public class Spawner : MonoBehaviour
             InstantiateEnemy();
             _spawned++;
             _timeAfterLastSpawn = 0;
+            EnemyCountChanged?.Invoke(_spawned, _currentWave.Count);
         }
 
         if (_currentWave.Count <= _spawned)
@@ -47,6 +50,7 @@ public class Spawner : MonoBehaviour
     public void NextWave()
     {
         SetWave(++_currentWaveNumber);
+        _layer = 1;
         _spawned = 0;
     }
 
@@ -54,6 +58,7 @@ public class Spawner : MonoBehaviour
     {
         Enemy enemy = Instantiate(_currentWave.Template, _spawnPoint.position, _spawnPoint.rotation, _spawnPoint)
             .GetComponent<Enemy>();
+        enemy.GetComponent<SpriteRenderer>().sortingOrder = ++_layer;
         enemy.Init(_player);
         enemy.Dying += OnEnemyDying;
     }
