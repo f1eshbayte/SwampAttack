@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
 public class Spawner : MonoBehaviour
 {
@@ -56,10 +57,14 @@ public class Spawner : MonoBehaviour
 
     private void InstantiateEnemy()
     {
-        Enemy enemy = Instantiate(_currentWave.Template, _spawnPoint.position, _spawnPoint.rotation, _spawnPoint)
+        var randomEnemy = Random.Range(0, _currentWave.Templates.Count);
+        
+        Enemy enemy = Instantiate(_currentWave.Templates[randomEnemy], _spawnPoint.position, _spawnPoint.rotation, _spawnPoint)
             .GetComponent<Enemy>();
+        
         enemy.GetComponent<SpriteRenderer>().sortingOrder = ++_layer;
         enemy.Init(_player);
+        
         enemy.Dying += OnEnemyDying;
     }
 
@@ -79,7 +84,7 @@ public class Spawner : MonoBehaviour
 [System.Serializable]
 public class Wave
 {
-    public GameObject Template;
+    public List<GameObject> Templates;
     public float Delay;
     public int Count;
 }
