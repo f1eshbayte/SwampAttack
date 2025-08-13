@@ -81,7 +81,7 @@ public class Spawner : MonoBehaviour
     }
 }
 
-[System.Serializable]
+[Serializable]
 public class Wave
 {
     public List<GameObject> Templates;

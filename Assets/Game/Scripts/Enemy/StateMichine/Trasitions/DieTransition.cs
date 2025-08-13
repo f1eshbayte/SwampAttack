@@ -1,5 +1,5 @@
-using System;
 using UnityEngine;
+
 [RequireComponent(typeof(Enemy))]
 public class DieTransition : Transition
 {

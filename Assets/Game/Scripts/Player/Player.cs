@@ -1,9 +1,7 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(Animator))]
 public class Player : MonoBehaviour
 {
     [SerializeField] private int _maxHealth;
@@ -12,10 +10,7 @@ public class Player : MonoBehaviour
 
     private Weapon _currentWeapon;
     private int _currentWeaponNumber = 0;
-    private Animator _animator;
     private int _currentHealth;
-    
-    
 
     public int Money { get; private set; }
 
@@ -26,15 +21,10 @@ public class Player : MonoBehaviour
     {
         ChangedWeapon(_weapons[_currentWeaponNumber]);
         _currentHealth = _maxHealth;
-        _animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
-        // if (Input.GetMouseButtonDown(0))
-        // {
-        //     _currentWeapon.Shoot(_shootPoint);
-        // }
         _currentWeapon.HandleShooting(_shootPoint);
     }
 

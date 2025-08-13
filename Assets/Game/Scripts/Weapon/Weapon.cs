@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public abstract class Weapon : MonoBehaviour
 {
@@ -10,7 +12,7 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] private bool _isAutomatic = false;
     [SerializeField] private float _fireRate;
 
-    private float _nextFireTime;
+    [NonSerialized] private float _nextFireTime;
     
     public string Label => _label;
     public int Price => _price;
@@ -22,11 +24,14 @@ public abstract class Weapon : MonoBehaviour
 
     public virtual void HandleShooting(Transform shootPoint)
     {
+        if (Time.timeScale == 0 || EventSystem.current.IsPointerOverGameObject())
+            return;
+        
         if (_isAutomatic)
         {
             if (Input.GetMouseButton(0) && Time.time >= _nextFireTime)
             {
-                Shoot(shootPoint);
+                Shoot(shootPoint); 
                 _nextFireTime = Time.time + _fireRate;
             }
         }
