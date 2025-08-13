@@ -31,10 +31,11 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            _currentWeapon.Shoot(_shootPoint);
-        }
+        // if (Input.GetMouseButtonDown(0))
+        // {
+        //     _currentWeapon.Shoot(_shootPoint);
+        // }
+        _currentWeapon.HandleShooting(_shootPoint);
     }
 
     public void BuyWeapon(Weapon weapon)

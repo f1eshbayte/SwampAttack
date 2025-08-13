@@ -1732,6 +1732,7 @@ MonoBehaviour:
   _maxHealth: 100
   _weapons:
   - {fileID: 6122192937486212418, guid: 04c80bddc0742074f9c267b15b7679f8, type: 3}
+  - {fileID: 1147814675405359397, guid: f23439d62507b7743ab38dbfda9680bc, type: 3}
   _shootPoint: {fileID: 2050597289}
 --- !u!1 &375133533
 GameObject:
@@ -3759,6 +3760,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _weapons:
   - {fileID: 6122192937486212418, guid: 04c80bddc0742074f9c267b15b7679f8, type: 3}
+  - {fileID: 1147814675405359397, guid: f23439d62507b7743ab38dbfda9680bc, type: 3}
   _player: {fileID: 349248427}
   _template: {fileID: 5851675768431933264, guid: 59fded533b3c6fc4882d72a0ed9a1efa, type: 3}
   _itemContainer: {fileID: 406589370}
